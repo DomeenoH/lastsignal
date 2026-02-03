@@ -1,10 +1,10 @@
-Confirm <%= @user.email %> is okay
+确认 <%= @user.display_name_or_email %> 是否平安
 
-You are listed as a Trusted Contact for <%= @user.email %> on <%= @app_name %>.
-They missed a check-in and asked you to confirm they're alive but temporarily unreachable.
+你被列为 <%= @app_name %> 上 <%= @user.sender_label %> 的可信联系人。
+对方错过了签到，正在请求你确认其平安但暂时无法联系。
 
-Confirm here:
+在此确认：
 <%= @confirm_url %>
 
-This pauses message delivery for a set period. You cannot read any messages or access the account.
-If you cannot confirm, you can ignore this email.
+这将延后自动发送一段时间。你无法阅读任何消息或访问账户。
+如果无法确认，可忽略此邮件。

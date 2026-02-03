@@ -1,7 +1,7 @@
-<% content_for(:title) { "Dashboard - LastSignal" } %>
+<% content_for(:title) { "仪表盘 - LastSignal" } %>
 
 <div class="max-w-4xl mx-auto">
-  <h1 class="text-2xl font-bold text-gray-900 mb-8">Dashboard</h1>
+  <h1 class="text-2xl font-bold text-gray-900 mb-8">仪表盘</h1>
 
   <% if @show_recovery_code %>
     <!-- Recovery Code Modal/Banner -->
@@ -13,10 +13,10 @@
           </svg>
         </div>
         <div class="ml-4 flex-1">
-          <h3 class="text-lg font-bold text-red-800">Save Your Emergency Recovery Code</h3>
+          <h3 class="text-lg font-bold text-red-800">保存恢复码</h3>
           <p class="mt-2 text-sm text-red-700">
-            This code allows you to <strong>stop message delivery without email access</strong>.
-            Save it in a password manager or print it and store it securely.
+            恢复码用于在<strong>无法登录邮箱时紧急停止自动发送</strong>。
+            请保存到密码管理器或安全地点。
           </p>
 
           <div class="mt-4 bg-white rounded-md p-4 border-2 border-red-300 inline-block">
@@ -26,7 +26,7 @@
           </div>
 
           <p class="mt-4 text-xs text-red-600">
-            <strong>You will not see this code again.</strong> If you lose it, you can generate a new one from Account Settings.
+            <strong>此代码不会再次显示。</strong> 如遗失，可在账户设置中重新生成。
           </p>
 
           <div class="mt-4">
@@ -34,7 +34,7 @@
               <button type="submit"
                       <%= "disabled" if @user.delivered? %>
                       class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed">
-                I've Saved My Recovery Code
+                我已保存恢复码
               </button>
             <% end %>
           </div>
@@ -52,14 +52,14 @@
           </svg>
         </div>
         <div class="ml-4 flex-1">
-          <h3 class="text-lg font-bold text-blue-800">Check-ins On Hold</h3>
+          <h3 class="text-lg font-bold text-blue-800">签到暂缓</h3>
           <p class="mt-2 text-sm text-blue-700">
-            You don't have any messages linked to accepted recipients. Check-ins and reminders stay
-            on hold until you create a message for at least one accepted recipient.
+            你还没有可发送的消息。系统暂不会发送签到提醒，
+            直到你为已接受邀请的收件人创建至少一条消息。
           </p>
           <div class="mt-4 flex flex-wrap gap-3">
-            <%= link_to "Manage Recipients", recipients_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700" %>
-            <%= link_to "Add Message", new_message_path, class: "inline-flex items-center px-4 py-2 border border-blue-300 text-sm font-medium rounded-md text-blue-700 bg-blue-50 hover:bg-blue-100" %>
+            <%= link_to "管理收件人", recipients_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700" %>
+            <%= link_to "添加消息", new_message_path, class: "inline-flex items-center px-4 py-2 border border-blue-300 text-sm font-medium rounded-md text-blue-700 bg-blue-50 hover:bg-blue-100" %>
           </div>
         </div>
       </div>
@@ -76,10 +76,10 @@
           </svg>
         </div>
         <div class="ml-4 flex-1">
-          <h3 class="text-lg font-bold text-yellow-800">Check-ins Paused</h3>
+          <h3 class="text-lg font-bold text-yellow-800">签到已暂停</h3>
           <p class="mt-2 text-sm text-yellow-700">
-            Your check-ins are currently paused. No reminders will be sent and no messages will be delivered
-            until you resume. This is useful if you're traveling or temporarily unable to respond to check-ins.
+            签到已暂停。恢复前不会发送提醒或自动发送消息。
+            旅行或暂时无法响应时可使用此功能。
           </p>
 
           <div class="mt-4">
@@ -89,7 +89,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                Resume Check-ins
+                恢复签到
               </button>
             <% end %>
           </div>
@@ -102,42 +102,43 @@
   <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
     <div class="flex items-center justify-between">
       <div>
-        <h2 class="text-lg font-medium text-gray-900">Your Status</h2>
+        <h2 class="text-lg font-medium text-gray-900">当前状态</h2>
         <p class="mt-1 text-sm text-gray-500">
           <% if @user.paused? %>
-            Check-ins are <span class="font-medium text-yellow-600">paused</span>
+            签到已<span class="font-medium text-yellow-600">暂停</span>
           <% elsif !@has_active_messages %>
-            Check-ins are <span class="font-medium text-blue-600">on hold</span>
+            签到已<span class="font-medium text-blue-600">暂缓</span>
           <% elsif @user.delivered? %>
-            Messages have been <span class="font-medium text-gray-600">delivered</span>
+            消息已<span class="font-medium text-gray-600">送达</span>
           <% elsif @user.next_checkin_at.present? %>
             <% if @user.next_checkin_at > Time.current %>
-              Next check-in due: <span class="font-medium">in <%= distance_of_time_in_words_to_now(@user.next_checkin_at) %></span>
-              <span class="text-gray-400">(<%= @user.next_checkin_at.strftime("%b %d, %Y at %I:%M %p") %>)</span>
+              下次签到截止：<span class="font-medium">还有 <%= distance_of_time_in_words_to_now(@user.next_checkin_at) %></span>
+              <span class="text-gray-400">（<%= @user.next_checkin_at.strftime("%Y-%m-%d %H:%M") %>）</span>
             <% else %>
-              Next check-in: <span class="font-medium text-amber-600">overdue by <%= time_ago_in_words(@user.next_checkin_at) %></span>
-              <span class="text-gray-400">(<%= @user.next_checkin_at.strftime("%b %d, %Y at %I:%M %p") %>)</span>
+              下次签到：<span class="font-medium text-amber-600">已逾期 <%= time_ago_in_words(@user.next_checkin_at) %></span>
+              <span class="text-gray-400">（<%= @user.next_checkin_at.strftime("%Y-%m-%d %H:%M") %>）</span>
             <% end %>
           <% else %>
-            Next check-in due: <span class="font-medium">Not configured</span>
+            下次签到截止：<span class="font-medium">未配置</span>
           <% end %>
         </p>
       </div>
       <div class="flex items-center gap-4">
         <% status_colors = { 'active' => 'green', 'grace' => 'yellow', 'cooldown' => 'red', 'delivered' => 'gray', 'paused' => 'yellow' } %>
         <% color = status_colors[@user.state] || 'gray' %>
+        <% status_labels = { "active" => "正常", "grace" => "提醒中", "cooldown" => "最终提醒", "delivered" => "已送达", "paused" => "已暂停" } %>
         <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-<%= color %>-100 text-<%= color %>-800">
-          <%= @user.state.capitalize %>
+          <%= status_labels[@user.state] || @user.state %>
         </span>
 
         <% if @user.active? || @user.grace? || @user.cooldown? %>
           <%= form_with url: pause_dashboard_path, method: :post, class: "inline" do |f| %>
             <button type="submit" class="inline-flex items-center px-3 py-1 border border-yellow-300 text-sm font-medium rounded-md text-yellow-700 bg-yellow-50 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
-                    onclick="return confirm('Pause check-ins? No reminders will be sent and no messages will be delivered until you resume.')">
+                    onclick="return confirm('暂停签到？在恢复之前不会发送提醒或自动发送消息。')">
               <svg class="mr-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
-              Pause
+              暂停
             </button>
           <% end %>
         <% end %>
@@ -148,30 +149,30 @@
   <!-- Quick Stats -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-      <div class="text-sm font-medium text-gray-500">Recipients</div>
+      <div class="text-sm font-medium text-gray-500">收件人</div>
       <div class="mt-2 text-3xl font-bold text-gray-900"><%= @recipients_count %></div>
-      <%= link_to "Manage", recipients_path, class: "mt-2 inline-block text-sm text-blue-600 hover:text-blue-800" %>
+      <%= link_to "管理", recipients_path, class: "mt-2 inline-block text-sm text-blue-600 hover:text-blue-800" %>
     </div>
 
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-      <div class="text-sm font-medium text-gray-500">Messages</div>
+      <div class="text-sm font-medium text-gray-500">消息</div>
       <div class="mt-2 text-3xl font-bold text-gray-900"><%= @messages_count %></div>
-      <%= link_to "Manage", messages_path, class: "mt-2 inline-block text-sm text-blue-600 hover:text-blue-800" %>
+      <%= link_to "管理", messages_path, class: "mt-2 inline-block text-sm text-blue-600 hover:text-blue-800" %>
     </div>
 
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-      <div class="text-sm font-medium text-gray-500">Check-in Interval</div>
-      <div class="mt-2 text-3xl font-bold text-gray-900"><%= (@user.effective_checkin_interval_hours / 24.0).round %> days</div>
-      <%= link_to "Settings", account_path, class: "mt-2 inline-block text-sm text-blue-600 hover:text-blue-800" %>
+      <div class="text-sm font-medium text-gray-500">签到间隔</div>
+      <div class="mt-2 text-3xl font-bold text-gray-900"><%= (@user.effective_checkin_interval_hours / 24.0).round %> 天</div>
+      <%= link_to "设置", account_path, class: "mt-2 inline-block text-sm text-blue-600 hover:text-blue-800" %>
     </div>
   </div>
 
   <!-- Security Notice -->
   <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-    <h3 class="text-sm font-medium text-blue-800">End-to-End Encrypted</h3>
+    <h3 class="text-sm font-medium text-blue-800">安全加密</h3>
     <p class="mt-1 text-sm text-blue-700">
-      Your messages are encrypted in your browser before being stored. 
-      We cannot read your messages - only your recipients can decrypt them using their passphrase.
+      你的消息会在你的设备上加密后再保存。
+      我们无法读取内容，只有收件人输入密码才能查看。
     </p>
   </div>
 </div>

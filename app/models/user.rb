@@ -22,6 +22,7 @@ class User < ApplicationRecord
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false },
                     format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :display_name, length: { maximum: 64 }, allow_blank: true
 
   validates :checkin_interval_hours,
             numericality: {
@@ -43,6 +44,7 @@ class User < ApplicationRecord
 
   # Callbacks
   before_validation :normalize_email
+  before_validation :normalize_display_name
   before_create :set_default_intervals
   after_create :schedule_first_checkin
   after_create :generate_recovery_code!
@@ -115,9 +117,9 @@ class User < ApplicationRecord
     max_attempts = AppConfig.checkin_max_attempts
 
     if checkin_attempts < min_attempts
-      errors.add(:checkin_attempts, "must be at least #{min_attempts}")
+      errors.add(:checkin_attempts, "至少为 #{min_attempts}")
     elsif checkin_attempts > max_attempts
-      errors.add(:checkin_attempts, "must be at most #{max_attempts}")
+      errors.add(:checkin_attempts, "最多为 #{max_attempts}")
     end
   end
 
@@ -137,9 +139,9 @@ class User < ApplicationRecord
     max_days = (max_hours / 24.0).round
 
     if value < min_hours
-      errors.add(attribute, "must be at least #{min_days} days")
+      errors.add(attribute, "至少为 #{min_days} 天")
     elsif value > max_hours
-      errors.add(attribute, "must be at most #{max_days} days")
+      errors.add(attribute, "最多为 #{max_days} 天")
     end
   end
 
@@ -286,6 +288,17 @@ class User < ApplicationRecord
     recovery_code_viewed_at.present?
   end
 
+  # Display name helpers for emails/UI
+  def display_name_or_email
+    display_name.presence || email
+  end
+
+  def sender_label
+    return email if display_name.blank?
+
+    "#{display_name}（#{email}）"
+  end
+
   # Mark recovery code as viewed
   def mark_recovery_code_viewed!
     update!(recovery_code_viewed_at: Time.current) unless recovery_code_viewed?
@@ -314,6 +327,10 @@ class User < ApplicationRecord
 
   def normalize_email
     self.email = email&.downcase&.strip
+  end
+
+  def normalize_display_name
+    self.display_name = display_name&.strip.presence
   end
 
   def trusted_contact_blank?(attrs)

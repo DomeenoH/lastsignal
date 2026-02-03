@@ -1,0 +1,11 @@
+确认 active@example.com 是否平安
+
+你被列为 LastSignal 上 active@example.com 的可信联系人。
+对方错过了签到，正在请求你确认其平安但暂时无法联系。
+
+在此确认：
+http://localhost:3000/trusted_contact/aQnmQdto6I-z1cIrePXJfJzADUkWB3UgWwWPYctV82c
+
+这将延后自动发送一段时间。你无法阅读任何消息或访问账户。
+如果无法确认，可忽略此邮件。
+

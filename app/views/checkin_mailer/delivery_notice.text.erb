@@ -1,12 +1,12 @@
-Your messages were delivered
+你的消息已发送
 <%= "=" * 40 %>
 
-Your LastSignal messages have been delivered to your recipients.
+你的 LastSignal 消息已发送给收件人。
 
-Delivered at: <%= @delivered_at&.strftime("%B %d, %Y at %H:%M UTC") || "Just now" %>
+发送时间：<%= @delivered_at&.strftime("%Y-%m-%d %H:%M UTC") || "刚刚" %>
 
 <% if @recipient_emails.any? %>
-Recipients notified:
+已通知收件人：
 <% @recipient_emails.each do |email| %>
 - <%= email %>
 <% end %>
@@ -14,4 +14,4 @@ Recipients notified:
 
 ---
 
-This is an automated message from <%= @app_name %>.
+此邮件由 <%= @app_name %> 自动发送。

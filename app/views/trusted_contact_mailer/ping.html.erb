@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Confirm status</title>
+  <title>确认状态</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -40,26 +40,26 @@
   </style>
 </head>
 <body>
-  <h1>Confirm <%= @user.email %> is okay</h1>
+  <h1>确认 <%= @user.display_name_or_email %> 是否平安</h1>
 
   <p>
-    You are listed as a Trusted Contact for <strong><%= @user.email %></strong> on <%= @app_name %>.
-    They missed a check-in and asked you to confirm they're alive but temporarily unreachable.
+    你被列为 <%= @app_name %> 上 <strong><%= @user.sender_label %></strong> 的可信联系人。
+    对方错过了签到，正在请求你确认其平安但暂时无法联系。
   </p>
 
   <div class="notice">
-    Clicking the button below will pause message delivery for a set period.
-    You cannot read any messages or access the account.
+    点击下方按钮将延后自动发送一段时间。
+    你无法阅读任何消息或访问账户。
   </div>
 
   <p>
-    <a href="<%= @confirm_url %>" class="button" style="color: #ffffff !important;">Confirm They're OK</a>
+    <a href="<%= @confirm_url %>" class="button" style="color: #ffffff !important;">确认对方平安</a>
   </p>
 
-  <p>If you cannot confirm, you can ignore this email.</p>
+  <p>如果无法确认，可忽略此邮件。</p>
 
   <div class="footer">
-    <p>This message was sent by <%= @app_name %>.</p>
+    <p>此邮件由 <%= @app_name %> 发送。</p>
   </div>
 </body>
 </html>

@@ -1,9 +1,9 @@
-<% content_for(:title) { "Recipients - LastSignal" } %>
+<% content_for(:title) { "收件人 - LastSignal" } %>
 
 <div class="max-w-4xl mx-auto">
   <div class="flex items-center justify-between mb-8">
-    <h1 class="text-2xl font-bold text-gray-900">Recipients</h1>
-    <%= link_to "Add Recipient", new_recipient_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700" %>
+    <h1 class="text-2xl font-bold text-gray-900">收件人</h1>
+    <%= link_to "添加收件人", new_recipient_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700" %>
   </div>
 
   <% if @recipients.empty? %>
@@ -11,11 +11,11 @@
       <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
-      <h3 class="mt-4 text-lg font-medium text-gray-900">No recipients yet</h3>
+      <h3 class="mt-4 text-lg font-medium text-gray-900">暂无收件人</h3>
       <p class="mt-2 text-sm text-gray-500">
-        Add recipients who will receive your messages if you stop checking in.
+        添加收件人。当你长期未签到时，消息会自动发送给他们。
       </p>
-      <%= link_to "Add your first recipient", new_recipient_path, class: "mt-4 inline-flex items-center text-sm text-blue-600 hover:text-blue-800" %>
+      <%= link_to "添加第一个收件人", new_recipient_path, class: "mt-4 inline-flex items-center text-sm text-blue-600 hover:text-blue-800" %>
     </div>
   <% else %>
     <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
@@ -30,36 +30,36 @@
                   </p>
                   <% if recipient.accepted? %>
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                      Accepted
+                      已接受
                     </span>
                   <% else %>
                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                      Pending
+                      待接受
                     </span>
                   <% end %>
                 </div>
                 <p class="mt-1 text-sm text-gray-500 truncate"><%= recipient.email %></p>
                 <% if recipient.invited? && recipient.invite_expires_at %>
                   <p class="mt-1 text-xs text-gray-400">
-                    Invite expires: <%= recipient.invite_expires_at.strftime("%B %d, %Y") %>
+                    邀请到期：<%= recipient.invite_expires_at.strftime("%Y-%m-%d") %>
                     <% if recipient.invite_expires_at < Time.current %>
-                      <span class="text-red-500">(expired)</span>
+                      <span class="text-red-500">(已过期)</span>
                     <% end %>
                   </p>
                 <% end %>
               </div>
               <div class="flex items-center space-x-2">
                 <% if recipient.invited? %>
-                  <%= button_to "Resend Invite", resend_invite_recipient_path(recipient),
+                  <%= button_to "重新发送邀请", resend_invite_recipient_path(recipient),
                       method: :post,
                       disabled: current_user.delivered?,
                       class: "text-sm text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:cursor-not-allowed" %>
                 <% end %>
-                <%= link_to "Edit", edit_recipient_path(recipient), class: "text-sm text-gray-600 hover:text-gray-800" %>
-                <%= button_to "Remove", recipient_path(recipient),
+                <%= link_to "编辑", edit_recipient_path(recipient), class: "text-sm text-gray-600 hover:text-gray-800" %>
+                <%= button_to "移除", recipient_path(recipient),
                     method: :delete,
                     disabled: current_user.delivered?,
-                    data: { turbo_confirm: "Remove #{recipient.display_name}? They will no longer receive your messages." },
+                    data: { turbo_confirm: "移除 #{recipient.display_name}？他们将不再收到你的消息。" },
                     class: "text-sm text-red-600 hover:text-red-800 disabled:opacity-50 disabled:cursor-not-allowed" %>
               </div>
             </div>
@@ -71,12 +71,12 @@
 
   <!-- Info Box -->
   <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
-    <h3 class="text-sm font-medium text-blue-800">How recipients work</h3>
+    <h3 class="text-sm font-medium text-blue-800">收件人如何接收消息</h3>
     <ul class="mt-2 text-sm text-blue-700 list-disc list-inside space-y-1">
-      <li>Recipients receive an invite email with a secure link</li>
-      <li>They create a passphrase to generate their encryption key</li>
-      <li>Only they can decrypt messages using their passphrase</li>
-      <li>You can assign recipients to specific messages</li>
+      <li>收件人会收到邀请邮件</li>
+      <li>按提示设置密码</li>
+      <li>只有他们能用密码查看消息</li>
+      <li>你可以为每条消息选择收件人</li>
     </ul>
   </div>
 </div>

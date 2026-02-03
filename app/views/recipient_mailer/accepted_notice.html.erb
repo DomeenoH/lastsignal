@@ -13,27 +13,27 @@
 </head>
 <body>
   <div class="header">
-    <h1 style="margin: 0; font-size: 24px;">Recipient Ready</h1>
+    <h1 style="margin: 0; font-size: 24px;">收件人已就绪</h1>
   </div>
   
   <div class="content">
-    <p>Good news!</p>
+    <p>好消息！</p>
     
     <div class="highlight">
-      <strong><%= @recipient.display_name %></strong> has accepted your invite and registered their encryption key.
+      <strong><%= @recipient.display_name %></strong> 已接受邀请并完成安全设置。
     </div>
     
-    <p>You can now include them as a recipient for your encrypted messages.</p>
+    <p>现在你可以将他们作为消息的收件人。</p>
     
     <p style="color: #6b7280; font-size: 14px;">
-      Accepted at: <%= @accepted_at&.strftime("%B %d, %Y at %H:%M UTC") %>
+      接受时间：<%= @accepted_at&.strftime("%Y-%m-%d %H:%M UTC") %>
     </p>
     
-    <a href="<%= login_url %>" class="button" style="color: white !important;">Log In to <%= @app_name %></a>
+    <a href="<%= login_url %>" class="button" style="color: white !important;">登录 <%= @app_name %></a>
   </div>
   
   <div class="footer">
-    <p>This is an automated message from <%= @app_name %>.</p>
+    <p>此邮件由 <%= @app_name %> 自动发送。</p>
   </div>
 </body>
 </html>

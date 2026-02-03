@@ -1,24 +1,24 @@
-You missed your check-in on <%= @app_name %>
+你错过了签到
 <%= "=" * 40 %>
 
-You missed your scheduled check-in on <%= @app_name %>.
+你错过了本次签到。
 
-Reminder attempt <%= @attempt_number %> of <%= @attempt_total %>.
+提醒第 <%= @attempt_number %> 次 / 共 <%= @attempt_total %> 次。
 
-Confirm check-in:
+确认签到：
 <%= @checkin_url %>
 
-Log in if you need to update settings:
+如需更新设置，请登录：
 <%= @login_url %>
 
-If you don't check in, we'll continue sending reminders. After the final reminder, your encrypted messages will be delivered to your recipients.
+如果仍未确认，我们会继续提醒。最终提醒后仍未确认，消息将自动发送给收件人。
 
-If this is intentional and you want your messages delivered, you don't need to do anything.
+如果你希望消息自动发送，无需操作。
 
 <% if @next_attempt_at && @attempt_number < @attempt_total %>
-Next reminder: <%= @next_attempt_at.strftime("%B %d, %Y at %H:%M UTC") %>
+下一次提醒：<%= @next_attempt_at.strftime("%Y-%m-%d %H:%M UTC") %>
 <% end %>
 
 ---
 
-This is an automated message from <%= @app_name %>.
+此邮件由 <%= @app_name %> 自动发送。

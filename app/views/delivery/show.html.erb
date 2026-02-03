@@ -1,24 +1,24 @@
-<% content_for(:title) { "Your Messages - LastSignal" } %>
+<% content_for(:title) { "你的消息 - LastSignal" } %>
 
 <div class="max-w-3xl mx-auto">
   <div class="text-center mb-8">
-    <h1 class="text-2xl font-bold text-gray-900">You Have Messages</h1>
+    <h1 class="text-2xl font-bold text-gray-900">你有消息</h1>
     <p class="mt-2 text-gray-600">
-      From: <strong><%= @sender.email %></strong>
+      发起人：<strong><%= @sender.sender_label %></strong>
     </p>
   </div>
 
   <% if @pending_message_recipients.any? %>
     <!-- Pending Messages Notice -->
     <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
-      <h3 class="text-sm font-medium text-yellow-800">Messages available later</h3>
-      <p class="mt-1 text-sm text-yellow-700">
-        Some messages have a delayed delivery and will become available on the dates shown below:
-      </p>
+    <h3 class="text-sm font-medium text-yellow-800">消息稍后可查看</h3>
+    <p class="mt-1 text-sm text-yellow-700">
+      部分消息设置了延迟发送，将在以下时间可查看：
+    </p>
       <ul class="mt-2 text-sm text-yellow-700 list-disc list-inside space-y-1">
         <% @pending_message_recipients.each do |mr| %>
           <li>
-            Message available on <%= mr.available_at.strftime("%B %d, %Y at %H:%M UTC") %>
+            可查看时间：<%= mr.available_at.strftime("%Y-%m-%d %H:%M UTC") %>
           </li>
         <% end %>
       </ul>
@@ -31,25 +31,25 @@
       <svg class="mx-auto h-12 w-12 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
-      <h3 class="mt-4 text-lg font-medium text-gray-900">No messages available yet</h3>
+      <h3 class="mt-4 text-lg font-medium text-gray-900">暂无可查看的消息</h3>
       <p class="mt-2 text-sm text-gray-600">
-        All your messages have a delayed delivery. Please check back on the dates shown above.
+        你的消息暂时还不可查看，请在上述时间后再来。
       </p>
     </div>
   <% else %>
   <!-- Passphrase Form -->
   <div id="decrypt-card" class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
     <div id="decrypt-form">
-      <h2 class="text-lg font-medium text-gray-900 mb-4">Enter Your Passphrase</h2>
+      <h2 class="text-lg font-medium text-gray-900 mb-4">输入密码查看消息</h2>
       <p class="text-sm text-gray-600 mb-4">
-        To read your messages, enter the passphrase you created when you first set up your account.
-        Your passphrase never leaves your browser.
+        请输入你设置的密码即可查看。
+        密码不会上传到服务器。
       </p>
 
       <div class="space-y-4">
         <div>
           <label for="passphrase" class="block text-sm font-medium text-gray-700">
-            Passphrase
+            密码
           </label>
           <input type="password" 
                  id="passphrase" 
@@ -57,22 +57,22 @@
                  required
                  autocomplete="current-password"
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-                  placeholder="Enter your passphrase">
+                  placeholder="输入你的密码">
         </div>
 
         <% if @recipient.passphrase_hint.present? %>
           <div class="bg-gray-50 border border-gray-200 rounded-lg p-3">
             <div class="flex items-center justify-between">
-              <p class="text-sm font-medium text-gray-800">Need a hint?</p>
+              <p class="text-sm font-medium text-gray-800">需要提示吗？</p>
               <button type="button"
                       id="hint-toggle"
                       class="text-sm font-medium text-blue-600 hover:text-blue-700">
-                Show hint
+                显示提示
               </button>
             </div>
             <div id="hint-text" class="hidden mt-2 text-sm text-gray-700">
               <p class="font-medium text-gray-900"><%= @recipient.passphrase_hint %></p>
-              <p class="mt-1 text-xs text-gray-500">This hint is stored in plaintext on the server.</p>
+              <p class="mt-1 text-xs text-gray-500">提示为明文保存。</p>
             </div>
           </div>
         <% end %>
@@ -86,7 +86,7 @@
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-            <span id="status-text">Decrypting messages...</span>
+            <span id="status-text">正在打开消息...</span>
           </div>
         </div>
 
@@ -97,7 +97,7 @@
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          <span id="decrypt-btn-text">Decrypt Messages</span>
+          <span id="decrypt-btn-text">查看消息</span>
         </button>
       </div>
     </div>
@@ -110,7 +110,7 @@
         <svg class="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <span class="text-sm font-medium text-green-800">Messages decrypted successfully</span>
+        <span class="text-sm font-medium text-green-800">消息已可查看</span>
       </div>
     </div>
 
@@ -121,12 +121,12 @@
 
   <!-- Security Notice -->
   <div class="mt-8 bg-gray-50 border border-gray-200 rounded-lg p-4">
-    <h3 class="text-sm font-medium text-gray-800">Security information</h3>
+    <h3 class="text-sm font-medium text-gray-800">安全提示</h3>
     <ul class="mt-2 text-sm text-gray-600 list-disc list-inside space-y-1">
-      <li>Your passphrase is never sent to our server</li>
-      <li>We will never ask for your passphrase by email</li>
-      <li>Decryption happens entirely in your browser</li>
-      <li>You can access this page again using the same link</li>
+      <li>密码不会上传到服务器</li>
+      <li>我们不会通过邮件索要你的密码</li>
+      <li>消息处理在你的设备上完成</li>
+      <li>你可以使用相同链接再次访问此页面</li>
     </ul>
   </div>
   <% end %>
@@ -173,10 +173,10 @@
     errorEl.classList.add('hidden');
 
     if (!passphrase) {
-      errorEl.textContent = 'Please enter your passphrase.';
+      errorEl.textContent = '请输入你的密码。';
       errorEl.classList.remove('hidden');
       decryptSpinner.classList.add('hidden');
-      decryptBtnText.textContent = 'Decrypt Messages';
+    decryptBtnText.textContent = '查看消息';
       return;
     }
 
@@ -184,9 +184,9 @@
     decryptBtn.disabled = true;
     decryptBtn.classList.add('opacity-50');
     decryptSpinner.classList.remove('hidden');
-    decryptBtnText.textContent = 'Decrypting...';
+    decryptBtnText.textContent = '正在打开...';
     errorEl.classList.add('hidden');
-    setStatus('Decrypting messages...', 'info');
+    setStatus('正在打开消息...', 'info');
 
     await new Promise(resolve => setTimeout(resolve, 0));
 
@@ -198,12 +198,12 @@
       const deliveryData = JSON.parse(document.getElementById('delivery-data').textContent);
 
       if (!payloadCache) {
-        setStatus('Fetching encrypted messages...', 'info');
+        setStatus('正在获取消息...', 'info');
 
         // Fetch encrypted payloads
         const response = await fetch(deliveryData.payloadUrl);
         if (!response.ok) {
-          throw new Error('Failed to fetch messages');
+          throw new Error('获取消息失败');
         }
 
         payloadCache = await response.json();
@@ -211,7 +211,7 @@
 
       const data = payloadCache;
 
-      setStatus('Deriving encryption key...', 'info');
+      setStatus('正在处理密码...', 'info');
 
       // Decrypt each message
       const decryptedMessages = [];
@@ -234,7 +234,7 @@
           // Generate keypair from seed
           const keypair = sodium.crypto_box_seed_keypair(seed);
 
-          setStatus(`Decrypting message ${decryptedMessages.length + 1}...`, 'info');
+          setStatus(`正在打开第 ${decryptedMessages.length + 1} 条消息...`, 'info');
 
           // Decode encrypted message key
           const encryptedMsgKey = sodium.from_base64(msg.encrypted_msg_key_b64u, sodium.base64_variants.URLSAFE_NO_PADDING);
@@ -261,11 +261,11 @@
             plaintext: sodium.to_string(plaintext)
           });
         } catch (e) {
-          console.error('Failed to decrypt message:', e);
+          console.error('解密消息失败:', e);
           decryptedMessages.push({
             label: msg.label,
             created_at: msg.created_at,
-            error: 'Failed to decrypt. Passphrase may be incorrect.'
+            error: '打开失败，密码可能不正确。'
           });
         }
       }
@@ -273,7 +273,7 @@
       // Check if any messages decrypted successfully
       const successCount = decryptedMessages.filter(m => !m.error).length;
       if (successCount === 0) {
-        throw new Error('Could not decrypt any messages. Please check your passphrase.');
+        throw new Error('未能打开任何消息，请检查密码。');
       }
 
       // Display decrypted messages
@@ -302,7 +302,7 @@
 
         const title = document.createElement('h3');
         title.className = 'text-lg font-medium text-gray-900';
-        title.textContent = msg.label || 'Untitled Message';
+        title.textContent = msg.label || '未命名消息';
 
         const date = document.createElement('span');
         date.className = 'text-xs text-gray-500';
@@ -319,15 +319,15 @@
       messagesContainer.classList.remove('hidden');
 
     } catch (error) {
-      console.error('Decryption error:', error);
-      const message = error.message || 'Failed to decrypt. Please check your passphrase.';
+      console.error('解密错误:', error);
+      const message = error.message || '打开失败，请检查密码。';
       errorEl.textContent = message;
       errorEl.classList.remove('hidden');
       statusEl.classList.add('hidden');
       decryptBtn.disabled = false;
       decryptBtn.classList.remove('opacity-50');
       decryptSpinner.classList.add('hidden');
-      decryptBtnText.textContent = 'Decrypt Messages';
+      decryptBtnText.textContent = '查看消息';
     }
   }
 
@@ -346,7 +346,7 @@
       const hintText = document.getElementById('hint-text');
       const isHidden = hintText.classList.contains('hidden');
       hintText.classList.toggle('hidden');
-      hintToggle.textContent = isHidden ? 'Hide hint' : 'Show hint';
+      hintToggle.textContent = isHidden ? '隐藏提示' : '显示提示';
     });
   }
 </script>

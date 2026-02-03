@@ -15,7 +15,7 @@ class MessageRecipient < ApplicationRecord
               less_than_or_equal_to: ->(mr) { AppConfig.message_recipient_max_delivery_delay_days * 24 },
               message: ->(object, data) {
                 max_days = AppConfig.message_recipient_max_delivery_delay_days
-                "must be at most #{max_days} #{'day'.pluralize(max_days)}"
+                "最多为 #{max_days} 天"
               }
             },
             allow_nil: true
@@ -51,7 +51,7 @@ class MessageRecipient < ApplicationRecord
     return if recipient.blank?
 
     unless recipient.can_receive_messages?
-      errors.add(:recipient, "must have accepted invite and registered a public key")
+      errors.add(:recipient, "必须已接受邀请并注册公钥")
     end
   end
 end

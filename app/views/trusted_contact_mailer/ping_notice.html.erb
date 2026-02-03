@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trusted Contact ping sent</title>
+  <title>可信联系人提醒已发送</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -30,18 +30,18 @@
   </style>
 </head>
 <body>
-  <h1>Trusted Contact ping sent</h1>
+  <h1>可信联系人提醒已发送</h1>
 
   <p>
-    We just sent a confirmation request to <strong><%= @contact.email %></strong>.
+    我们刚刚向 <strong><%= @contact.email %></strong> 发送了确认请求。
   </p>
 
   <div class="notice">
-    If they confirm, delivery will be paused temporarily. If not, delivery proceeds as scheduled.
+    如果对方确认，发送将暂时暂停；若未确认，则按计划继续发送。
   </div>
 
   <div class="footer">
-    <p>This message was sent by <%= @app_name %>.</p>
+    <p>此邮件由 <%= @app_name %> 发送。</p>
   </div>
 </body>
 </html>

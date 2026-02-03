@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your <%= @app_name %> login link</title>
+  <title>你的 <%= @app_name %> 登录链接</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -48,23 +48,23 @@
   </style>
 </head>
 <body>
-  <h1>Sign in to <%= @app_name %></h1>
+  <h1>登录 <%= @app_name %></h1>
 
-  <p>Click the button below to sign in to your account. This link expires in <%= @expires_in_minutes %> minutes.</p>
+  <p>点击下方按钮登录账户。链接将在 <%= @expires_in_minutes %> 分钟后过期。</p>
 
   <p>
-    <a href="<%= @magic_link_url %>" class="button" style="color: #ffffff !important;">Sign in to <%= @app_name %></a>
+    <a href="<%= @magic_link_url %>" class="button" style="color: #ffffff !important;">登录 <%= @app_name %></a>
   </p>
 
-  <p>Or copy and paste this URL into your browser:</p>
+  <p>或将此链接复制到浏览器打开：</p>
   <p><code><%= @magic_link_url %></code></p>
 
   <div class="warning">
-    <strong>Security notice:</strong> <%= @app_name %> will never ask you for your passphrase by email. You only enter it on the website. If you did not request this login link, you can safely ignore this email.
+    <strong>安全提示：</strong>我们不会通过邮件索要任何密码。你只需要点击登录链接即可。如果你未申请此登录链接，可忽略此邮件。
   </div>
 
   <div class="footer">
-    <p>This is an automated message from <%= @app_name %>. Please do not reply to this email.</p>
+    <p>此邮件由 <%= @app_name %> 自动发送，请勿回复。</p>
   </div>
 </body>
 </html>

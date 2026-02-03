@@ -74,9 +74,9 @@ class TrustedContact < ApplicationRecord
     max_days = (max_hours / 24.0).round
 
     if value < min_hours
-      errors.add(attribute, "must be at least #{min_days} days")
+      errors.add(attribute, "至少为 #{min_days} 天")
     elsif value > max_hours
-      errors.add(attribute, "must be at most #{max_days} days")
+      errors.add(attribute, "最多为 #{max_days} 天")
     end
   end
 

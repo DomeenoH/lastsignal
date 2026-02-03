@@ -22,7 +22,7 @@ class MessagesController < ApplicationController
     # This is called from JavaScript with encrypted data
     recipient_envelopes = parse_recipient_envelopes
     unless recipients_valid?(recipient_envelopes)
-      render json: { error: "Invalid recipient selection." }, status: :unprocessable_entity
+      render json: { error: "收件人选择无效。" }, status: :unprocessable_entity
       return
     end
 
@@ -58,7 +58,7 @@ class MessagesController < ApplicationController
   rescue StandardError => e
     Rails.logger.error("Message creation failed: #{e.class}: #{e.message}")
     Rails.logger.error(e.backtrace.first(10).join("\n")) if Rails.env.development? || Rails.env.test?
-    render json: { error: "Failed to save message" }, status: :internal_server_error
+    render json: { error: "保存消息失败" }, status: :internal_server_error
   end
 
   # GET /messages/:id
@@ -77,7 +77,7 @@ class MessagesController < ApplicationController
     had_active_messages = current_user.has_active_messages?
     recipient_envelopes = parse_recipient_envelopes
     unless recipients_valid?(recipient_envelopes)
-      render json: { error: "Invalid recipient selection." }, status: :unprocessable_entity
+      render json: { error: "收件人选择无效。" }, status: :unprocessable_entity
       return
     end
 
@@ -112,7 +112,7 @@ class MessagesController < ApplicationController
   rescue StandardError => e
     Rails.logger.error("Message update failed: #{e.class}: #{e.message}")
     Rails.logger.error(e.backtrace.first(10).join("\n")) if Rails.env.development? || Rails.env.test?
-    render json: { error: "Failed to update message" }, status: :internal_server_error
+    render json: { error: "更新消息失败" }, status: :internal_server_error
   end
 
   # DELETE /messages/:id
@@ -126,7 +126,7 @@ class MessagesController < ApplicationController
       request: request
     )
 
-    flash[:notice] = "Message deleted."
+    flash[:notice] = "消息已删除。"
     redirect_to messages_path
   end
 

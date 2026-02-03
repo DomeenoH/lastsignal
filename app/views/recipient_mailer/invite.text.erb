@@ -1,29 +1,34 @@
-You've been added as a recipient on <%= @app_name %>
+来自 <%= @sender.display_name_or_email %> 的邀请
 <%= "=" * 50 %>
 
-<%= @sender.email %> has added you as a recipient on <%= @app_name %>.
+发起人：<%= @sender.sender_label %>
+这封邮件由 <%= @app_name %> 代表对方发送。
 
-WHAT IS <%= @app_name.upcase %>?
-<%= @app_name %> is a "dead man's switch" service. If <%= @sender.email %> stops checking in, any encrypted messages they've prepared for you will be delivered automatically.
+你为什么会收到这封邮件？
+对方希望在自己长期未签到时，把提前写好的消息自动发送给你。
 
-WHAT YOU NEED TO DO
-To receive encrypted messages, you need to set up your encryption key. This involves creating a secure passphrase that only you will know.
+什么是 <%= @app_name %>？
+<%= @app_name %> 是一项“长期未签到时自动发送消息”的服务。
 
-Set up your encryption key here:
+你需要做什么
+如果你愿意接收消息，请设置一个只有你知道的密码。
+以后收到消息时，需要输入这个密码才能查看。
+
+在此设置密码：
 <%= @invite_url %>
 
-This invite link expires in <%= @expires_in_days %> days.
+此邀请链接将在 <%= @expires_in_days %> 天后过期。
 
 ---
 
-IMPORTANT: REMEMBER YOUR PASSPHRASE!
-Your passphrase is the only way to decrypt messages sent to you. We cannot recover it if you forget it. Write it down and store it somewhere safe.
+重要：请牢记你的密码！
+密码是查看消息的唯一方式。我们无法找回密码。请记录并妥善保存。
 
 ---
 
-SECURITY NOTICE
-<%= @app_name %> will never ask you for your passphrase via email or any other channel. You only enter it on our secure website to decrypt messages. If you didn't expect this email or don't know <%= @sender.email %>, you can safely ignore it.
+安全提示
+<%= @app_name %> 绝不会通过邮件或其他渠道索要你的密码。你只会在安全网站上输入密码来查看消息。如果你未期望收到此邮件或不认识 <%= @sender.display_name_or_email %>，可忽略此邮件。
 
 ---
 
-This is an automated message from <%= @app_name %>. Please do not reply to this email.
+此邮件由 <%= @app_name %> 自动发送，请勿回复。

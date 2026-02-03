@@ -1,10 +1,10 @@
-<% content_for(:title) { "Messages - LastSignal" } %>
+<% content_for(:title) { "消息 - LastSignal" } %>
 
 <div class="max-w-4xl mx-auto">
   <div class="flex items-center justify-between mb-8">
-    <h1 class="text-2xl font-bold text-gray-900">Messages</h1>
+    <h1 class="text-2xl font-bold text-gray-900">消息</h1>
     <% if current_user.recipients.with_keys.any? %>
-      <%= link_to "Create Message", new_message_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700" %>
+      <%= link_to "创建消息", new_message_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700" %>
     <% end %>
   </div>
 
@@ -13,17 +13,17 @@
       <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
-      <h3 class="mt-4 text-lg font-medium text-gray-900">No messages yet</h3>
+      <h3 class="mt-4 text-lg font-medium text-gray-900">暂无消息</h3>
       <p class="mt-2 text-sm text-gray-500">
         <% if current_user.recipients.with_keys.any? %>
-          Create encrypted messages that will be delivered to your recipients if you stop checking in.
+          创建消息。当你长期未签到时，系统会自动发送给收件人。
         <% else %>
-          You need at least one recipient with a registered encryption key before you can create messages.
-          <br><%= link_to "Add a recipient", new_recipient_path, class: "text-blue-600 hover:text-blue-800" %> first.
+          你需要至少一位已完成邀请的收件人才能创建消息。
+          <br>请先<%= link_to "添加收件人", new_recipient_path, class: "text-blue-600 hover:text-blue-800" %>。
         <% end %>
       </p>
       <% if current_user.recipients.with_keys.any? %>
-        <%= link_to "Create your first message", new_message_path, class: "mt-4 inline-flex items-center text-sm text-blue-600 hover:text-blue-800" %>
+        <%= link_to "创建第一条消息", new_message_path, class: "mt-4 inline-flex items-center text-sm text-blue-600 hover:text-blue-800" %>
       <% end %>
     </div>
   <% else %>
@@ -35,31 +35,31 @@
               <div class="flex-1 min-w-0">
                 <div class="flex items-center space-x-3">
                   <p class="text-sm font-medium text-gray-900 truncate">
-                    <%= message.label.presence || "Untitled Message" %>
+                    <%= message.label.presence || "未命名消息" %>
                   </p>
                 </div>
                 <p class="mt-1 text-sm text-gray-500">
                   <% recipient_names = message.recipients.map(&:display_name) %>
                   <% if recipient_names.any? %>
-                    To: <%= recipient_names.first(3).join(", ") %><%= " and #{recipient_names.size - 3} more" if recipient_names.size > 3 %>
+                    收件人：<%= recipient_names.first(3).join(", ") %><%= " 等另 #{recipient_names.size - 3} 人" if recipient_names.size > 3 %>
                   <% else %>
-                    No recipients
+                    无收件人
                   <% end %>
                 </p>
                 <p class="mt-1 text-xs text-gray-400">
-                  Created <%= message.created_at.strftime("%B %d, %Y") %>
+                  创建于 <%= message.created_at.strftime("%Y-%m-%d") %>
                   <% if message.updated_at > message.created_at + 1.minute %>
-                    &middot; Updated <%= message.updated_at.strftime("%B %d, %Y") %>
+                    &middot; 更新于 <%= message.updated_at.strftime("%Y-%m-%d") %>
                   <% end %>
                 </p>
               </div>
               <div class="flex items-center space-x-2">
-                <%= link_to "View", message_path(message), class: "text-sm text-gray-600 hover:text-gray-800" %>
-                <%= link_to "Edit", edit_message_path(message), class: "text-sm text-blue-600 hover:text-blue-800" %>
-                <%= button_to "Delete", message_path(message),
+                <%= link_to "查看", message_path(message), class: "text-sm text-gray-600 hover:text-gray-800" %>
+                <%= link_to "编辑", edit_message_path(message), class: "text-sm text-blue-600 hover:text-blue-800" %>
+                <%= button_to "删除", message_path(message),
                     method: :delete,
                     disabled: current_user.delivered?,
-                    data: { turbo_confirm: "Delete this message? This cannot be undone." },
+                    data: { turbo_confirm: "删除此消息？此操作无法撤销。" },
                     class: "text-sm text-red-600 hover:text-red-800 disabled:opacity-50 disabled:cursor-not-allowed" %>
               </div>
             </div>
@@ -71,10 +71,10 @@
 
   <!-- Info Box -->
   <div class="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
-    <h3 class="text-sm font-medium text-blue-800">End-to-end encrypted</h3>
+    <h3 class="text-sm font-medium text-blue-800">安全加密</h3>
     <p class="mt-1 text-sm text-blue-700">
-      Your messages are encrypted in your browser before being stored. We cannot read them - 
-      only your recipients can decrypt them using their passphrase.
+      你的消息会在你的设备上加密后再保存，我们无法读取内容，
+      只有收件人输入密码才能查看。
     </p>
   </div>
 </div>

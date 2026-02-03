@@ -46,5 +46,8 @@ module LastsignalApp
 
     # Default queue name
     config.active_job.queue_name_prefix = "lastsignal"
+
+    config.i18n.available_locales = [:"zh-CN", :en]
+    config.i18n.default_locale = :"zh-CN"
   end
 end

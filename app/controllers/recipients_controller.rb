@@ -39,10 +39,10 @@ class RecipientsController < ApplicationController
         request: request
       )
 
-      flash[:notice] = "Invite sent to #{@recipient.email}."
+      flash[:notice] = "邀请已发送至 #{@recipient.email}。"
       redirect_to recipients_path
     else
-      flash.now[:alert] = "Please correct the errors below."
+      flash.now[:alert] = "请修正以下错误。"
       render :new, status: :unprocessable_entity
     end
   end
@@ -58,10 +58,10 @@ class RecipientsController < ApplicationController
   # PATCH/PUT /recipients/:id
   def update
     if @recipient.update(recipient_params)
-      flash[:notice] = "Recipient updated."
+      flash[:notice] = "收件人已更新。"
       redirect_to recipients_path
     else
-      flash.now[:alert] = "Please correct the errors below."
+      flash.now[:alert] = "请修正以下错误。"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -71,14 +71,14 @@ class RecipientsController < ApplicationController
     email = @recipient.email
     @recipient.destroy!
 
-    flash[:notice] = "Recipient #{email} has been removed."
+    flash[:notice] = "已移除收件人 #{email}。"
     redirect_to recipients_path
   end
 
   # POST /recipients/:id/resend_invite
   def resend_invite
     unless @recipient.invited?
-      flash[:alert] = "This recipient has already accepted their invite."
+      flash[:alert] = "该收件人已接受邀请。"
       redirect_to recipients_path
       return
     end
@@ -94,7 +94,7 @@ class RecipientsController < ApplicationController
       request: request
     )
 
-    flash[:notice] = "Invite resent to #{@recipient.email}."
+    flash[:notice] = "邀请已重新发送至 #{@recipient.email}。"
     redirect_to recipients_path
   end
 

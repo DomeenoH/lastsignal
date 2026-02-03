@@ -1,15 +1,15 @@
-Good news from <%= @app_name %>
+来自 <%= @app_name %> 的好消息
 <%= "=" * 40 %>
 
-<%= @recipient.display_name %> has accepted your invite and registered their encryption key.
+<%= @recipient.display_name %> 已接受邀请并完成安全设置。
 
-You can now include them as a recipient for your encrypted messages.
+现在你可以将他们作为消息的收件人。
 
-Accepted at: <%= @accepted_at&.strftime("%B %d, %Y at %H:%M UTC") %>
+接受时间：<%= @accepted_at&.strftime("%Y-%m-%d %H:%M UTC") %>
 
-Log in to create or update your messages:
+登录以创建或更新消息：
 <%= login_url %>
 
 ---
 
-This is an automated message from <%= @app_name %>.
+此邮件由 <%= @app_name %> 自动发送。

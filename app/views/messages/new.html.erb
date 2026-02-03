@@ -1,9 +1,9 @@
-<% content_for(:title) { "Create Message - LastSignal" } %>
+<% content_for(:title) { "创建消息 - LastSignal" } %>
 
 <div class="max-w-3xl mx-auto">
   <div class="flex items-center justify-between mb-8">
-    <h1 class="text-2xl font-bold text-gray-900">Create Message</h1>
-    <%= link_to "Cancel", messages_path, class: "text-sm text-gray-600 hover:text-gray-800" %>
+    <h1 class="text-2xl font-bold text-gray-900">创建消息</h1>
+    <%= link_to "取消", messages_path, class: "text-sm text-gray-600 hover:text-gray-800" %>
   </div>
 
   <div id="message-form">
@@ -11,45 +11,45 @@
       <!-- Label -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <label for="label" class="block text-sm font-medium text-gray-700">
-          Label (optional)
+          标签（可选）
         </label>
         <input type="text" 
                id="label" 
                name="label"
                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
-               placeholder="e.g., Important information, Letter to family">
+               placeholder="例如：重要信息、给家人的信">
         <p class="mt-1 text-xs text-yellow-600">
-          Warning: Labels are stored unencrypted as metadata. Avoid putting sensitive information here.
+          提醒：标签不会加密，请勿填写隐私或敏感信息。
         </p>
       </div>
 
       <!-- Message Content -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <label for="plaintext" class="block text-sm font-medium text-gray-700">
-          Message Content
+          消息内容
         </label>
         <textarea id="plaintext" 
                   name="plaintext"
                   rows="10"
                   required
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm font-mono"
-                  placeholder="Write your message here. It will be encrypted before being sent to the server."></textarea>
+                  placeholder="在此编写消息。内容会在本地加密后再上传。"></textarea>
         <p class="mt-1 text-xs text-gray-500">
-          This content is encrypted in your browser and never sent in plaintext.
+          内容会在你的设备上加密后再保存，我们无法读取原文。
         </p>
       </div>
 
       <!-- Recipients -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <label class="block text-sm font-medium text-gray-700 mb-4">
-          Recipients
+          收件人
         </label>
         
         <% if @available_recipients.empty? %>
           <p class="text-sm text-gray-500">
-            No recipients available. 
-            <%= link_to "Add recipients", recipients_path, class: "text-blue-600 hover:text-blue-800" %> 
-            and wait for them to accept their invite.
+            暂无可用收件人。
+            请先<%= link_to "添加收件人", recipients_path, class: "text-blue-600 hover:text-blue-800" %>
+            并等待对方完成邀请。
           </p>
         <% else %>
           <div class="space-y-3">
@@ -73,7 +73,7 @@
                          min="0" 
                          max="<%= AppConfig.message_recipient_max_delivery_delay_days %>"
                          placeholder="0">
-                  <span class="text-xs text-gray-500">days delay</span>
+                  <span class="text-xs text-gray-500">延迟（天）</span>
                 </div>
               </div>
             <% end %>
@@ -91,18 +91,18 @@
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          <span id="status-text">Encrypting message...</span>
+          <span id="status-text">正在处理消息...</span>
         </div>
       </div>
 
       <!-- Submit -->
       <div class="flex justify-end space-x-4">
-        <%= link_to "Cancel", messages_path, class: "px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-800" %>
+        <%= link_to "取消", messages_path, class: "px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-800" %>
         <button type="button"
                 id="submit-btn"
                 <%= "disabled" if current_user.delivered? %>
                 class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed">
-          Encrypt & Save
+          保存消息
         </button>
       </div>
     </div>

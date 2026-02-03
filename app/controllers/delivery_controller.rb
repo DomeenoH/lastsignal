@@ -14,7 +14,7 @@ class DeliveryController < ApplicationController
         metadata: { reason: "not_found" },
         request: request
       )
-      flash[:alert] = "Invalid or revoked delivery link."
+      flash[:alert] = "阅读链接无效或已失效。"
       redirect_to login_path
       return
     end
@@ -59,7 +59,7 @@ class DeliveryController < ApplicationController
         metadata: { reason: "not_found" },
         request: request
       )
-      render json: { error: "Invalid or revoked delivery link." }, status: :not_found
+      render json: { error: "阅读链接无效或已失效。" }, status: :not_found
       return
     end
 

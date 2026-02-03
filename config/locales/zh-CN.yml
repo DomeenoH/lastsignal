@@ -1,0 +1,80 @@
+zh-CN:
+  activerecord:
+    attributes:
+      user:
+        email: "邮箱"
+        checkin_interval_days: "签到间隔"
+        checkin_attempts: "提醒次数"
+        checkin_attempt_interval_days: "提醒间隔"
+      recipient:
+        email: "邮箱"
+        name: "姓名"
+        passphrase_hint: "口令提示"
+      trusted_contact:
+        name: "姓名"
+        email: "邮箱"
+        pause_duration_days: "暂停时长"
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      blank: "不能为空"
+      invalid: "无效"
+      taken: "已被占用"
+      too_short: "太短（最少 %{count} 个字符）"
+      too_long: "太长（最多 %{count} 个字符）"
+      wrong_length: "长度不正确（应为 %{count} 个字符）"
+      not_a_number: "不是数字"
+      greater_than: "必须大于 %{count}"
+      greater_than_or_equal_to: "必须大于或等于 %{count}"
+      less_than: "必须小于 %{count}"
+      less_than_or_equal_to: "必须小于或等于 %{count}"
+      odd: "必须为奇数"
+      even: "必须为偶数"
+  datetime:
+    distance_in_words:
+      half_a_minute: "半分钟"
+      less_than_x_seconds:
+        one: "不到 %{count} 秒"
+        other: "不到 %{count} 秒"
+      x_seconds:
+        one: "%{count} 秒"
+        other: "%{count} 秒"
+      less_than_x_minutes:
+        one: "不到 %{count} 分钟"
+        other: "不到 %{count} 分钟"
+      x_minutes:
+        one: "%{count} 分钟"
+        other: "%{count} 分钟"
+      about_x_hours:
+        one: "约 %{count} 小时"
+        other: "约 %{count} 小时"
+      x_days:
+        one: "%{count} 天"
+        other: "%{count} 天"
+      about_x_months:
+        one: "约 %{count} 个月"
+        other: "约 %{count} 个月"
+      x_months:
+        one: "%{count} 个月"
+        other: "%{count} 个月"
+      about_x_years:
+        one: "约 %{count} 年"
+        other: "约 %{count} 年"
+      over_x_years:
+        one: "%{count} 年以上"
+        other: "%{count} 年以上"
+      almost_x_years:
+        one: "将近 %{count} 年"
+        other: "将近 %{count} 年"
+  number:
+    human:
+      storage_units:
+        format: "%n %u"
+        units:
+          byte: "字节"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+          pb: "PB"
+          eb: "EB"

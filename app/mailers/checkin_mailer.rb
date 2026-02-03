@@ -12,7 +12,7 @@ class CheckinMailer < ApplicationMailer
 
     mail(
       to: user.email,
-      subject: "Check-in reminder from #{@app_name}"
+      subject: "来自 #{@app_name} 的签到提醒"
     )
   end
 
@@ -27,7 +27,7 @@ class CheckinMailer < ApplicationMailer
 
     mail(
       to: user.email,
-      subject: "Action required: You missed your #{@app_name} check-in"
+      subject: "需要确认：你错过了 #{@app_name} 签到"
     )
   end
 
@@ -41,7 +41,7 @@ class CheckinMailer < ApplicationMailer
 
     mail(
       to: user.email,
-      subject: "URGENT: Your #{@app_name} messages will be delivered soon"
+      subject: "紧急：你的 #{@app_name} 消息即将发送"
     )
   end
 
@@ -53,7 +53,7 @@ class CheckinMailer < ApplicationMailer
 
     mail(
       to: user.email,
-      subject: "Your #{@app_name} messages were delivered to recipients"
+      subject: "你的 #{@app_name} 消息已发送给收件人"
     )
   end
 end

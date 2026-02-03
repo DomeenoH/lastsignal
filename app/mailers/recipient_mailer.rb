@@ -10,7 +10,7 @@ class RecipientMailer < ApplicationMailer
 
     mail(
       to: recipient.email,
-      subject: "#{@sender.email} has added you as a recipient on #{@app_name}"
+      subject: "来自 #{@sender.display_name_or_email} 的邀请：在 #{@app_name} 接收消息"
     )
   end
 
@@ -25,7 +25,7 @@ class RecipientMailer < ApplicationMailer
 
     mail(
       to: recipient.email,
-      subject: "You have #{@total_count} message#{'s' if @total_count > 1} waiting on #{@app_name}"
+      subject: "你在 #{@app_name} 上有 #{@total_count} 条消息等待查看"
     )
   end
 
@@ -38,7 +38,7 @@ class RecipientMailer < ApplicationMailer
 
     mail(
       to: @sender.email,
-      subject: "#{@recipient.display_name} accepted your invite on #{@app_name}"
+      subject: "#{@recipient.display_name} 已完成设置，可以接收消息"
     )
   end
 end

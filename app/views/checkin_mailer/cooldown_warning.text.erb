@@ -1,22 +1,22 @@
-URGENT: FINAL REMINDER - Your <%= @app_name %> messages will be delivered soon
+紧急：最终提醒 - 你的 <%= @app_name %> 消息即将发送
 <%= "=" * 60 %>
 
-This is your final reminder on <%= @app_name %>. Your encrypted messages will be delivered to your recipients unless you take action.
+这是你在 <%= @app_name %> 上的最终提醒。除非你采取行动，否则你的消息将自动发送给收件人。
 
-Reminder attempt <%= @attempt_number %> of <%= @attempt_total %>.
+提醒第 <%= @attempt_number %> 次 / 共 <%= @attempt_total %> 次。
 
-*** MESSAGES WILL BE DELIVERED: <%= @delivery_due_at&.strftime("%B %d, %Y at %H:%M UTC") || "Soon" %> ***
+*** 预计发送时间：<%= @delivery_due_at&.strftime("%Y-%m-%d %H:%M UTC") || "即将" %> ***
 
-If you are still alive and want to STOP the delivery, confirm your check-in now:
+如果你仍然平安并希望停止发送，请立即确认签到：
 <%= @checkin_url %>
 
-Clicking this link will:
-- Cancel the scheduled message delivery
-- Return you to active status
-- Schedule your next check-in
+点击此链接将：
+- 取消计划中的自动发送
+- 将你恢复为正常状态
+- 安排下一次签到
 
-IF YOU DO NOT CLICK THE LINK, YOUR MESSAGES WILL BE DELIVERED TO YOUR RECIPIENTS.
+如果你不点击链接，消息将自动发送给收件人。
 
 ---
 
-This is an automated message from <%= @app_name %>.
+此邮件由 <%= @app_name %> 自动发送。

@@ -14,7 +14,7 @@ class TrustedContactsController < ApplicationController
         metadata: { reason: "not_found" },
         request: request
       )
-      flash[:alert] = "Invalid or expired trusted contact link."
+      flash[:alert] = "可信联系人链接无效或已过期。"
       redirect_to login_path
       return
     end
@@ -33,7 +33,7 @@ class TrustedContactsController < ApplicationController
         metadata: { reason: "not_found" },
         request: request
       )
-      flash[:alert] = "Invalid or expired trusted contact link."
+      flash[:alert] = "可信联系人链接无效或已过期。"
       redirect_to login_path
       return
     end

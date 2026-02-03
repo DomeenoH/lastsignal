@@ -18,7 +18,7 @@ class DashboardController < ApplicationController
   def acknowledge_recovery_code
     current_user.mark_recovery_code_viewed!
     session.delete(:show_recovery_code)
-    flash[:notice] = "Recovery code saved. Keep it in a safe place!"
+    flash[:notice] = "应急恢复码已保存，请妥善保管！"
     redirect_to dashboard_path
   end
 
@@ -31,9 +31,9 @@ class DashboardController < ApplicationController
         actor_type: "user",
         request: request
       )
-      flash[:notice] = "Check-ins paused. No reminders or deliveries will occur until you resume."
+      flash[:notice] = "已暂停签到。在恢复之前不会发送提醒或自动发送消息。"
     else
-      flash[:alert] = "Cannot pause check-ins in your current state."
+      flash[:alert] = "当前状态无法暂停签到。"
     end
     redirect_to dashboard_path
   end
@@ -47,9 +47,9 @@ class DashboardController < ApplicationController
         actor_type: "user",
         request: request
       )
-      flash[:notice] = "Check-ins resumed. Your next check-in is scheduled."
+    flash[:notice] = "签到已恢复。已为你安排下一次签到。"
     else
-      flash[:alert] = "Cannot resume check-ins in your current state."
+      flash[:alert] = "当前状态无法恢复签到。"
     end
     redirect_to dashboard_path
   end

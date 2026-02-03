@@ -24,7 +24,7 @@ class CheckinsController < ApplicationController
       request: request
     )
 
-    flash[:notice] = "Check-in confirmed! Your next check-in is due #{distance_of_time_in_words(Time.current, @user.next_checkin_at)} from now."
+    flash[:notice] = "签到已确认！下次签到将在 #{distance_of_time_in_words(Time.current, @user.next_checkin_at)} 后到期。"
     redirect_to checkin_success_path
   end
 
@@ -47,7 +47,7 @@ class CheckinsController < ApplicationController
         request: request
       )
 
-      flash[:alert] = "Invalid or expired check-in link."
+      flash[:alert] = "签到链接无效或已过期。"
       redirect_to login_path
       return
     end

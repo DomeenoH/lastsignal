@@ -1,0 +1,109 @@
+<!-- BEGIN app/views/layouts/mailer.html.erb --><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/recipient_mailer/invite.html.erb --><!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>你已被添加为 LastSignal 的收件人</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .button {
+      display: inline-block;
+      background-color: #2563eb;
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 500;
+      margin: 20px 0;
+    }
+    .warning {
+      background-color: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 6px;
+      padding: 12px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    .info {
+      background-color: #eff6ff;
+      border: 1px solid #3b82f6;
+      border-radius: 6px;
+      padding: 12px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 12px;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <h1>你已被添加为收件人</h1>
+
+  <p><strong>active@example.com</strong> 已在 LastSignal 中将你添加为收件人。</p>
+
+  <div class="info">
+    <strong>LastSignal 是什么？</strong>
+    <p style="margin: 8px 0 0 0;">
+      当 active@example.com 长期未签到时，LastSignal 会把他们提前准备的消息发送给你。
+    </p>
+  </div>
+
+  <h2>你需要做什么</h2>
+  <p>
+    要查看消息，你需要设置一个只有你知道的口令。
+  </p>
+
+  <p>
+    <a href="http://localhost:3000/invites/w76ghcBT94qed9Ty1rRzfAcemjni4-pxhwnwkyODOBg" class="button" style="color: #ffffff !important;">设置口令</a>
+  </p>
+
+  <p><small>此邀请链接将在 7 天后过期。</small></p>
+
+  <div class="warning">
+    <strong>重要：请牢记你的口令！</strong>
+    <p style="margin: 8px 0 0 0;">
+      口令是查看消息的唯一方式。我们无法找回口令。
+      请记录并妥善保存。
+    </p>
+  </div>
+
+  <div class="warning">
+    <strong>安全提示：</strong>
+    <p style="margin: 8px 0 0 0;">
+      LastSignal 绝不会通过邮件或其他渠道索要你的口令。
+      你只会在安全网站上输入口令来查看消息。如果你未期望收到此邮件，
+      或不认识 active@example.com，可忽略此邮件。
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>此邮件由 LastSignal 自动发送，请勿回复。</p>
+  </div>
+</body>
+</html>
+<!-- END app/views/recipient_mailer/invite.html.erb -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->

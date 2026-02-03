@@ -21,7 +21,7 @@ class RecipientKey < ApplicationRecord
     missing_keys = required_keys - kdf_params.keys.map(&:to_s)
 
     if missing_keys.any?
-      errors.add(:kdf_params, "missing required keys: #{missing_keys.join(', ')}")
+      errors.add(:kdf_params, "缺少必要键: #{missing_keys.join(', ')}")
     end
   end
 end

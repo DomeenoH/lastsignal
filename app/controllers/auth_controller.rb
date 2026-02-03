@@ -13,7 +13,7 @@ class AuthController < ApplicationController
 
     if email.present? && email.match?(URI::MailTo::EMAIL_REGEXP)
       unless AppConfig.allowlisted_email?(email)
-        flash[:alert] = "This instance is private. Your email isn't authorized."
+        flash[:alert] = "此实例为私有部署，你的邮箱未获授权。"
         return redirect_to login_path
       end
 
@@ -41,9 +41,9 @@ class AuthController < ApplicationController
         request: request
       )
 
-      flash[:notice] = "Check your email for a login link. It expires in #{AppConfig.magic_link_ttl_minutes} minutes."
+      flash[:notice] = "请查收登录链接邮件。链接将在 #{AppConfig.magic_link_ttl_minutes} 分钟后过期。"
     else
-      flash[:alert] = "Please enter a valid email address."
+      flash[:alert] = "请输入有效的邮箱地址。"
     end
 
     redirect_to login_path
@@ -56,7 +56,7 @@ class AuthController < ApplicationController
 
     if token
       unless AppConfig.allowlisted_email?(token.user.email)
-        flash[:alert] = "This instance is private. Your email isn't authorized."
+        flash[:alert] = "此实例为私有部署，你的邮箱未获授权。"
         return redirect_to login_path
       end
 
@@ -83,11 +83,11 @@ class AuthController < ApplicationController
         session[:show_recovery_code] = token.user.generate_recovery_code!
         redirect_to dashboard_path
       else
-        flash[:notice] = "You're now signed in."
+        flash[:notice] = "你已成功登录。"
         redirect_to dashboard_path
       end
     else
-      flash[:alert] = "Invalid or expired login link. Please request a new one."
+      flash[:alert] = "登录链接无效或已过期，请重新申请。"
       redirect_to login_path
     end
   end
@@ -106,7 +106,7 @@ class AuthController < ApplicationController
       request: request
     ) if user
 
-    flash[:notice] = "You have been signed out."
+    flash[:notice] = "你已退出登录。"
     redirect_to login_path
   end
 end

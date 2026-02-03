@@ -15,7 +15,7 @@ class InvitesController < ApplicationController
         metadata: { reason: "not_found" },
         request: request
       )
-      flash[:alert] = "Invalid invite link."
+      flash[:alert] = "邀请链接无效。"
       redirect_to login_path
       return
     end
@@ -29,15 +29,15 @@ class InvitesController < ApplicationController
         request: request
       )
       if @recipient.accepted?
-        flash[:notice] = "You've already accepted this invite."
+        flash[:notice] = "您已接受此邀请。"
       else
-        flash[:alert] = "This invite has expired. Please ask the sender to resend it."
+        flash[:alert] = "邀请已过期，请联系发送者重新发送。"
       end
       redirect_to login_path
       return
     end
 
-    @sender_email = @recipient.user.email
+    @sender = @recipient.user
     @kdf_params = AppConfig.kdf_params
     @kdf_salt_b64u = generate_kdf_salt
   end
@@ -53,7 +53,7 @@ class InvitesController < ApplicationController
         metadata: { reason: "not_found" },
         request: request
       )
-      render json: { error: "Invalid invite link." }, status: :not_found
+      render json: { error: "邀请链接无效。" }, status: :not_found
       return
     end
 
@@ -65,7 +65,7 @@ class InvitesController < ApplicationController
         metadata: { reason: "expired" },
         request: request
       )
-      render json: { error: "This invite has expired or was already used." }, status: :gone
+      render json: { error: "邀请已过期或已被使用。" }, status: :gone
       return
     end
 
@@ -76,7 +76,7 @@ class InvitesController < ApplicationController
     passphrase_hint = params[:passphrase_hint]
 
     if public_key_b64u.blank? || kdf_salt_b64u.blank? || kdf_params.blank?
-      render json: { error: "Missing required parameters." }, status: :unprocessable_entity
+      render json: { error: "缺少必要参数。" }, status: :unprocessable_entity
       return
     end
 
@@ -101,7 +101,7 @@ class InvitesController < ApplicationController
       # Notify the sender that their recipient has accepted
       RecipientMailer.accepted_notice(@recipient).deliver_later
 
-      render json: { success: true, message: "Your encryption key has been registered." }
+      render json: { success: true, message: "设置已完成。" }
     rescue ActiveRecord::RecordInvalid => e
       render json: { error: e.message }, status: :unprocessable_entity
     end

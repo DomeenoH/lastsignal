@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>You missed your check-in</title>
+  <title>你错过了签到</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -40,34 +40,33 @@
   </style>
 </head>
 <body>
-  <h1>You missed your check-in</h1>
+  <h1>你错过了签到</h1>
 
-  <p>You missed your scheduled check-in on <%= @app_name %>.</p>
+  <p>你错过了本次签到。</p>
 
   <div class="warning">
-    <strong>Reminder attempt <%= @attempt_number %> of <%= @attempt_total %>.</strong>
+    <strong>提醒第 <%= @attempt_number %> 次 / 共 <%= @attempt_total %> 次。</strong>
   </div>
 
   <p>
-    <a href="<%= @checkin_url %>" class="button" style="color: #ffffff !important;">Confirm Check-in</a>
+    <a href="<%= @checkin_url %>" class="button" style="color: #ffffff !important;">确认签到</a>
   </p>
   <p>
-    <a href="<%= @login_url %>">Or log in</a> if you need to update settings.
+    如需更新设置，可<a href="<%= @login_url %>">登录</a>。
   </p>
 
   <p>
-    If you don't check in, we'll continue sending reminders. After the final reminder, your encrypted messages
-    will be delivered to your recipients.
+    如果仍未确认，我们会继续提醒。最终提醒后仍未确认，消息将自动发送给收件人。
   </p>
 
-  <p>If this is intentional and you want your messages delivered, you don't need to do anything.</p>
+  <p>如果你希望消息自动发送，无需操作。</p>
 
   <% if @next_attempt_at && @attempt_number < @attempt_total %>
-    <p>Next reminder: <strong><%= @next_attempt_at.strftime("%B %d, %Y at %H:%M UTC") %></strong></p>
+    <p>下一次提醒：<strong><%= @next_attempt_at.strftime("%Y-%m-%d %H:%M UTC") %></strong></p>
   <% end %>
 
   <div class="footer">
-    <p>This is an automated message from <%= @app_name %>.</p>
+    <p>此邮件由 <%= @app_name %> 自动发送。</p>
   </div>
 </body>
 </html>

@@ -1,0 +1,30 @@
+你已被添加为 LastSignal 的收件人
+==================================================
+
+active@example.com 已在 LastSignal 中将你添加为收件人。
+
+什么是 LastSignal？
+当 active@example.com 长期未签到时，LastSignal 会把他们提前准备的消息发送给你。
+
+你需要做什么
+要查看消息，你需要设置一个只有你知道的口令。
+
+在此设置口令：
+http://localhost:3000/invites/w76ghcBT94qed9Ty1rRzfAcemjni4-pxhwnwkyODOBg
+
+此邀请链接将在 7 天后过期。
+
+---
+
+重要：请牢记你的口令！
+口令是查看消息的唯一方式。我们无法找回口令。请记录并妥善保存。
+
+---
+
+安全提示
+LastSignal 绝不会通过邮件或其他渠道索要你的口令。你只会在安全网站上输入口令来查看消息。如果你未期望收到此邮件或不认识 active@example.com，可忽略此邮件。
+
+---
+
+此邮件由 LastSignal 自动发送，请勿回复。
+

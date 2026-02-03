@@ -9,7 +9,7 @@ class AuthMailer < ApplicationMailer
 
     mail(
       to: user.email,
-      subject: "Your #{@app_name} login link"
+      subject: "你的 #{@app_name} 登录链接"
     )
   end
 end

@@ -1,35 +1,36 @@
-You have <%= @total_count %> message<%= 's' if @total_count > 1 %> waiting on <%= @app_name %>
+你在 <%= @app_name %> 上有 <%= @total_count %> 条消息等待查看
 <%= "=" * 50 %>
 
-<%= @sender.email %> prepared encrypted message<%= 's' if @total_count > 1 %> for you on <%= @app_name %>.
+发起人：<%= @sender.sender_label %>
+对方通过 <%= @app_name %> 给你准备了消息。
 <% if @available_count > 0 && @delayed_message_recipients.any? -%>
-<%= @available_count %> message<%= 's' if @available_count > 1 %> <%= @available_count > 1 ? 'are' : 'is' %> available now, and <%= @delayed_message_recipients.count %> will become available later.
+其中 <%= @available_count %> 条可立即查看，<%= @delayed_message_recipients.count %> 条将稍后可用。
 <% elsif @available_count > 0 -%>
-<%= @available_count > 1 ? 'These messages are' : 'This message is' %> now available.
+<%= @available_count > 1 ? "这些消息现在可查看。" : "该消息现在可查看。" %>
 <% else -%>
-<%= @delayed_message_recipients.count > 1 ? 'These messages have' : 'This message has' %> a delayed delivery and will become available later.
+<%= @delayed_message_recipients.count > 1 ? "这些消息稍后可查看。" : "该消息稍后可查看。" %>
 <% end -%>
 
-<%= @available_count > 0 ? "Read your message#{'s' if @available_count > 1}" : "View details" %> here:
+在此<%= @available_count > 0 ? "阅读消息" : "查看详情" %>：
 <%= @delivery_url %>
 <% if @delayed_message_recipients.any? %>
 
 ---
 
-MESSAGES WITH DELAYED DELIVERY
-The following message<%= 's' if @delayed_message_recipients.count > 1 %> will become available on the dates shown:
+稍后可查看的消息
+以下消息将在对应日期可查看：
 <% @delayed_message_recipients.each do |mr| %>
-- <%= mr.message.label.presence || "Untitled message" %> — <%= mr.available_at.strftime("%B %d, %Y") %>
+- <%= mr.message.label.presence || "未命名消息" %> — <%= mr.available_at.strftime("%Y-%m-%d") %>
 <% end %>
 <% end %>
 
 ---
 
-YOU'LL NEED YOUR PASSPHRASE
-To decrypt and read <%= @total_count > 1 ? 'these messages' : 'this message' %>, you'll need to enter the passphrase you created when you first set up your account. If you've forgotten your passphrase, the message<%= 's' if @total_count > 1 %> cannot be recovered.
+你需要密码
+要查看消息，你需要输入首次设置时创建的密码。如果忘记密码，消息将无法恢复。
 
 ---
 
-This is an automated message from <%= @app_name %>. Please do not reply to this email.
+此邮件由 <%= @app_name %> 自动发送，请勿回复。
 
-This link will remain active so you can access your message<%= 's' if @total_count > 1 %> at any time.
+该链接将保持有效，便于你随时访问消息。

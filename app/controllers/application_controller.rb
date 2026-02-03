@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
   # Before action: require authentication
   def require_authentication
     unless logged_in?
-      flash[:alert] = "Please sign in to continue."
+      flash[:alert] = "请先登录。"
       redirect_to login_path
     end
   end
@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
   def prevent_delivered_actions
     return unless current_user&.delivered?
 
-    message = "Your account is in delivered state and is read-only."
+    message = "你的消息已全部发送，当前为只读。"
 
     if request.format.json?
       render json: { error: message }, status: :forbidden

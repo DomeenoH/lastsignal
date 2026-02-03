@@ -1,14 +1,14 @@
-Sign in to <%= @app_name %>
+登录 <%= @app_name %>
 <%= "=" * 40 %>
 
-Click the link below to sign in to your account. This link expires in <%= @expires_in_minutes %> minutes.
+点击下方链接登录账户。链接将在 <%= @expires_in_minutes %> 分钟后过期。
 
 <%= @magic_link_url %>
 
 ---
 
-SECURITY NOTICE: <%= @app_name %> will never ask you for your passphrase by email. You only enter it on the website. If you did not request this login link, you can safely ignore this email.
+安全提示：我们不会通过邮件索要任何密码。你只需要点击登录链接即可。如果你未申请此登录链接，可忽略此邮件。
 
 ---
 
-This is an automated message from <%= @app_name %>. Please do not reply to this email.
+此邮件由 <%= @app_name %> 自动发送，请勿回复。

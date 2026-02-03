@@ -22,10 +22,10 @@ class AccountsController < ApplicationController
 
     if @user.update(account_params)
       @user.apply_checkin_setting_changes!
-      flash[:notice] = "Your settings have been updated."
+      flash[:notice] = "设置已更新。"
       redirect_to account_path
     else
-      flash.now[:alert] = "Please correct the errors below."
+      flash.now[:alert] = "请修正以下错误。"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -45,7 +45,7 @@ class AccountsController < ApplicationController
     session.delete(:user_id)
     session.delete(:created_at)
 
-    flash[:notice] = "Your account has been deleted."
+    flash[:notice] = "账户已删除。"
     redirect_to login_path
   end
 
@@ -61,6 +61,7 @@ class AccountsController < ApplicationController
 
   def account_params
     user_params = params.require(:user).permit(
+      :display_name,
       :checkin_interval_days,
       :checkin_attempts,
       :checkin_attempt_interval_days,

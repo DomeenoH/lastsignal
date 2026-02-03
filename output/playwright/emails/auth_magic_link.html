@@ -1,0 +1,84 @@
+<!-- BEGIN app/views/layouts/mailer.html.erb --><!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <!-- BEGIN app/views/auth_mailer/magic_link.html.erb --><!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>你的 LastSignal 登录链接</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .button {
+      display: inline-block;
+      background-color: #2563eb;
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 500;
+      margin: 20px 0;
+    }
+    .warning {
+      background-color: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 6px;
+      padding: 12px;
+      margin: 20px 0;
+      font-size: 14px;
+    }
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 12px;
+      color: #6b7280;
+    }
+    code {
+      background-color: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <h1>登录 LastSignal</h1>
+
+  <p>点击下方按钮登录账户。链接将在 15 分钟后过期。</p>
+
+  <p>
+    <a href="http://localhost:3000/auth/verify/JTbXhu20od7xTY0iaL-JuSGgX-nyxFMKoUOU8JFPe6M" class="button" style="color: #ffffff !important;">登录 LastSignal</a>
+  </p>
+
+  <p>或将此链接复制到浏览器打开：</p>
+  <p><code>http://localhost:3000/auth/verify/JTbXhu20od7xTY0iaL-JuSGgX-nyxFMKoUOU8JFPe6M</code></p>
+
+  <div class="warning">
+    <strong>安全提示：</strong>我们不会通过邮件索要任何口令。你只需要点击登录链接即可。如果你未申请此登录链接，可忽略此邮件。
+  </div>
+
+  <div class="footer">
+    <p>此邮件由 LastSignal 自动发送，请勿回复。</p>
+  </div>
+</body>
+</html>
+<!-- END app/views/auth_mailer/magic_link.html.erb -->
+  </body>
+</html>
+<!-- END app/views/layouts/mailer.html.erb -->

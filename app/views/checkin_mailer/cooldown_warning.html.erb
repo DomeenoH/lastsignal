@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>URGENT: Messages will be delivered soon</title>
+  <title>紧急：消息即将发送</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -40,34 +40,34 @@
   </style>
 </head>
 <body>
-  <h1 style="color: #dc2626;">URGENT: Final Reminder</h1>
+  <h1 style="color: #dc2626;">紧急：最终提醒</h1>
 
-  <p>This is your <strong>final reminder</strong> on <%= @app_name %>. Your encrypted messages will be delivered to your recipients unless you take action.</p>
+  <p>这是你在 <%= @app_name %> 上的<strong>最终提醒</strong>。除非你采取行动，否则你的消息将自动发送给收件人。</p>
 
   <div class="urgent">
-    <strong>Reminder attempt <%= @attempt_number %> of <%= @attempt_total %>.</strong><br>
-    <strong>Messages will be delivered:</strong> <%= @delivery_due_at&.strftime("%B %d, %Y at %H:%M UTC") || "Soon" %>
+    <strong>提醒第 <%= @attempt_number %> 次 / 共 <%= @attempt_total %> 次。</strong><br>
+    <strong>预计发送时间：</strong> <%= @delivery_due_at&.strftime("%Y-%m-%d %H:%M UTC") || "即将" %>
   </div>
 
-  <p>If you are still alive and want to STOP the delivery, confirm your check-in now:</p>
+  <p>如果你仍然平安并希望停止发送，请立即确认签到：</p>
 
   <p>
-    <a href="<%= @checkin_url %>" class="button" style="color: #ffffff !important;">Confirm Check-in</a>
+    <a href="<%= @checkin_url %>" class="button" style="color: #ffffff !important;">确认签到</a>
   </p>
 
   <p>
-    Clicking this link will:
+    点击此链接将：
   </p>
   <ul>
-    <li>Cancel the scheduled message delivery</li>
-    <li>Return you to active status</li>
-    <li>Schedule your next check-in</li>
+    <li>取消计划中的自动发送</li>
+    <li>将你恢复为正常状态</li>
+    <li>安排下一次签到</li>
   </ul>
 
-  <p><strong>If you do not click the link, your messages WILL be delivered to your recipients.</strong></p>
+  <p><strong>如果你不点击链接，消息将自动发送给收件人。</strong></p>
 
   <div class="footer">
-    <p>This is an automated message from <%= @app_name %>.</p>
+    <p>此邮件由 <%= @app_name %> 自动发送。</p>
   </div>
 </body>
 </html>

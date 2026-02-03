@@ -1,11 +1,11 @@
 <div class="max-w-md mx-auto mt-16 space-y-8">
     <div>
       <h2 class="text-center text-3xl font-extrabold text-red-600">
-        Emergency Stop
+        紧急停止
       </h2>
       <p class="mt-2 text-center text-sm text-gray-600">
-        Use your recovery code to immediately stop message delivery.<br>
-        <strong>No email access required.</strong>
+        使用恢复码立即停止自动发送。<br>
+        <strong>无需访问邮箱。</strong>
       </p>
     </div>
 
@@ -33,8 +33,8 @@
         </div>
         <div class="ml-3">
           <p class="text-sm text-yellow-700">
-            This will <strong>immediately cancel</strong> any pending message delivery and reset your check-in timer.
-            Check-ins will remain paused until you manually resume them from the dashboard. Your recovery code will be regenerated after use.
+            这将<strong>立即取消</strong>所有待发送消息并重置签到计时。
+            在你从仪表盘手动恢复前，签到将保持暂停。恢复码使用后会重新生成。
           </p>
         </div>
       </div>
@@ -43,19 +43,19 @@
     <%= form_with url: emergency_path, method: :post, class: "mt-8 space-y-6", data: { turbo: false } do |f| %>
       <div class="rounded-md shadow-sm -space-y-px">
         <div>
-          <label for="email" class="sr-only">Email address</label>
+          <label for="email" class="sr-only">邮箱地址</label>
           <input id="email" name="email" type="email" autocomplete="email" required
                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm"
-                 placeholder="Email address"
+                 placeholder="邮箱地址"
                  value="<%= params[:email] %>">
         </div>
         <div>
-          <label for="recovery_code" class="sr-only">Recovery Code</label>
+          <label for="recovery_code" class="sr-only">恢复码</label>
           <input id="recovery_code" name="recovery_code" type="text" autocomplete="off" required
                  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm font-mono tracking-wider"
                  placeholder="XXXX-XXXX-XXXX-XXXX"
                  pattern="[A-Za-z0-9]{4}-?[A-Za-z0-9]{4}-?[A-Za-z0-9]{4}-?[A-Za-z0-9]{4}"
-                 title="Recovery code format: XXXX-XXXX-XXXX-XXXX">
+                 title="恢复码格式：XXXX-XXXX-XXXX-XXXX">
         </div>
       </div>
 
@@ -67,16 +67,16 @@
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clip-rule="evenodd"/>
             </svg>
           </span>
-          Emergency Stop
+          紧急停止
         </button>
       </div>
     <% end %>
 
     <div class="text-center text-sm text-gray-500">
       <p>
-        Don't have your recovery code?<br>
-        You'll need to access your email to use the regular
-        <%= link_to "check-in", login_path, class: "text-indigo-600 hover:text-indigo-500" %>.
+        没有恢复码？<br>
+        你需要访问邮箱后通过
+        <%= link_to "签到", login_path, class: "text-indigo-600 hover:text-indigo-500" %> 确认状态。
       </p>
     </div>
   </div>

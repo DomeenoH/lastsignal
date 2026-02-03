@@ -9,7 +9,7 @@ class TrustedContactMailer < ApplicationMailer
 
     mail(
       to: contact.email,
-      subject: "Confirm #{@user.email} is safe"
+      subject: "确认 #{@user.display_name_or_email} 是否平安"
     )
   end
 
@@ -20,7 +20,7 @@ class TrustedContactMailer < ApplicationMailer
 
     mail(
       to: user.email,
-      subject: "Trusted Contact ping sent"
+      subject: "可信联系人提醒已发送"
     )
   end
 
@@ -32,7 +32,7 @@ class TrustedContactMailer < ApplicationMailer
 
     mail(
       to: user.email,
-      subject: "Trusted Contact confirmed you're okay"
+      subject: "可信联系人确认你平安"
     )
   end
 end

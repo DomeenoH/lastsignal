@@ -1,16 +1,7 @@
-# Disclaimer
+# 免责声明
 
-LastSignal is provided "as is" without warranty of any kind. The authors provide only the source
-code and do not host, operate or monitor the server on your behalf. All email delivery is performed
-by your self-hosted instance and your chosen SMTP provider.
+LastSignal 按“现状”提供，不提供任何明示或暗示担保。作者仅提供源代码，不代表你托管、运营或监控服务器。所有邮件投递均由你自托管的实例和所选 SMTP 服务商完成。
 
-By using this project, you accept full responsibility for configuration, security, backups, content,
-recipients, compliance obligations, and the consequences of any delivery or non-delivery. The
-authors disclaim all liability for damages, data loss, missed or premature delivery, misuse, or any
-other outcome, whether arising from bugs, misconfiguration, third-party outages, or operational
-errors.
+使用本项目即表示你对配置、安全、备份、内容、收件人、合规义务以及任何投递或未投递后果承担全部责任。作者不对任何损害、数据丢失、错过或过早投递、滥用或其他结果承担责任，无论原因是漏洞、配置错误、第三方故障或运营失误。
 
-LastSignal is not a substitute for a will, trust, power of attorney, or any other legal instrument.
-It is not legally binding and should not be relied upon to transfer rights, property, or
-obligations. If you need legal certainty, consult a qualified attorney and use appropriate legal
-documents.
+LastSignal 不能替代遗嘱、信托、授权委托书或任何其他法律文书。它不具备法律效力，也不应被用来转移权利、财产或义务。如需法律确定性，请咨询合格律师并使用适当的法律文件。

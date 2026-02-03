@@ -18,7 +18,7 @@ class EmergencyController < ApplicationController
     recovery_code = params[:recovery_code]
 
     if email.blank? || recovery_code.blank?
-      flash.now[:alert] = "Please enter both your email address and recovery code."
+      flash.now[:alert] = "请输入邮箱地址和恢复码。"
       return render :show, status: :unprocessable_entity
     end
 
@@ -29,7 +29,7 @@ class EmergencyController < ApplicationController
       # Simulate work to prevent timing attacks
       Digest::SHA256.hexdigest(recovery_code.to_s)
       sleep(rand(0.1..0.3))
-      flash.now[:alert] = "Invalid email or recovery code."
+      flash.now[:alert] = "邮箱或恢复码无效。"
       return render :show, status: :unprocessable_entity
     end
 
@@ -47,7 +47,7 @@ class EmergencyController < ApplicationController
 
       render :success
     else
-      flash.now[:alert] = "Invalid email or recovery code."
+      flash.now[:alert] = "邮箱或恢复码无效。"
       render :show, status: :unprocessable_entity
     end
   end
