@@ -65,7 +65,7 @@ module AppConfig
     end
 
     def smtp_from_name
-      ENV.fetch("SMTP_FROM_NAME", "LastSignal")
+      ENV.fetch("SMTP_FROM_NAME", "失联告警 · LastSignal")
     end
 
     # Authentication
