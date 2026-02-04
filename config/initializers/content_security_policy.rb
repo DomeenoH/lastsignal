@@ -19,10 +19,13 @@ Rails.application.configure do
     if Rails.env.development?
       policy.script_src :self, "https://cdn.jsdelivr.net", :wasm_unsafe_eval, :unsafe_inline, :unsafe_eval
     else
-      policy.script_src :self, "https://cdn.jsdelivr.net", :wasm_unsafe_eval, :strict_dynamic
+      # Allow Cloudflare-injected scripts (e.g., email obfuscation) which do not carry a nonce.
+      # Removing strict-dynamic restores host-based allowlisting for :self.
+      policy.script_src :self, "https://cdn.jsdelivr.net", :wasm_unsafe_eval
     end
 
-    policy.style_src :self, :unsafe_inline # Tailwind requires inline styles
+    # Tailwind requires inline styles; allow external styles for KaTeX/Highlight from jsdelivr.
+    policy.style_src :self, :unsafe_inline, "https://cdn.jsdelivr.net"
     policy.frame_ancestors :none
     policy.base_uri    :self
     policy.form_action :self

@@ -1,8 +1,8 @@
-# <img src="https://lastsignal.app/logo-mark.svg" alt="LastSignal" width="50" height="50" align="absmiddle" /> LastSignal
+# <img src="https://lastsignal.app/logo-mark.svg" alt="失联告警 · LastSignal" width="50" height="50" align="absmiddle" /> 失联告警 · LastSignal
 
 [![Ruby](https://img.shields.io/badge/Ruby-3.4-red.svg)](https://www.ruby-lang.org/) [![Rails](https://img.shields.io/badge/Rails-8-red.svg)](https://rubyonrails.org/) [![Database](https://img.shields.io/badge/Database-SQLite-blue.svg)](https://www.sqlite.org/) [![Crypto](https://img.shields.io/badge/Crypto-libsodium-black.svg)](https://libsodium.gitbook.io/doc/) [![Deploy](https://img.shields.io/badge/Deploy-Kamal-success.svg)](https://kamal-deploy.org/) [![License: BSL 1.1](https://img.shields.io/badge/License-BSL%201.1-blue.svg)](https://mariadb.com/bsl11/)
 
-LastSignal 是一个可自托管、以邮件为核心的“遗嘱式触发”服务。你可以为关心的人撰写加密消息。如果你停止响应签到邮件，LastSignal 会自动投递这些消息。
+失联告警 · LastSignal 是一个可自托管、以邮件为核心的“遗嘱式触发”服务。你可以为关心的人撰写加密消息。如果你停止响应签到邮件，失联告警 · LastSignal 会自动投递这些消息。
 
 官网：[lastsignal.app](https://lastsignal.app)
 
@@ -22,7 +22,7 @@ LastSignal 是一个可自托管、以邮件为核心的“遗嘱式触发”服
 
 **⚠️ 重要：必须使用强口令**
 
-LastSignal 使用 **服务器生成的 KDF 盐**（与收件人公钥一起存储）。这是一个有意的架构权衡，用于支持从口令进行确定性密钥再生成，但会引入特定风险：
+失联告警 · LastSignal 使用 **服务器生成的 KDF 盐**（与收件人公钥一起存储）。这是一个有意的架构权衡，用于支持从口令进行确定性密钥再生成，但会引入特定风险：
 **如果攻击者获得数据库访问权**（如服务器被攻破、数据泄露、恶意运营者或执法请求），他们可获得盐并对收件人口令进行**离线暴力破解**，且不受速率限制。
 
 **[完整安全文档 →](https://lastsignal.app/security)**
@@ -211,7 +211,7 @@ bin/kamal logs
 
 ## 📮 邮件送达清单
 
-邮件投递对 LastSignal 至关重要。如果 SMTP 配置错误，消息可能无法送达。
+邮件投递对失联告警 · LastSignal 至关重要。如果 SMTP 配置错误，消息可能无法送达。
 
 大多数事务邮件服务商（如 Postmark、SendGrid 等）会引导你完成配置并提供所需 DNS 记录与细节。
 
@@ -254,15 +254,15 @@ docker run --rm -v lastsignal_storage:/data -v "$PWD":/backup alpine \
 
 ## ⚠️ 免责声明
 
-LastSignal 按“现状”提供，不提供任何明示或暗示担保。作者仅提供源代码，不代表你托管、运营或监控服务器。所有邮件投递均由你自托管的实例和所选 SMTP 服务商完成。
+失联告警 · LastSignal 按“现状”提供，不提供任何明示或暗示担保。作者仅提供源代码，不代表你托管、运营或监控服务器。所有邮件投递均由你自托管的实例和所选 SMTP 服务商完成。
 
 使用本项目即表示你对配置、安全、备份、内容、收件人、合规义务以及任何投递或未投递后果承担全部责任。作者不对任何损害、数据丢失、错过或过早投递、滥用或其他结果承担责任，无论原因是漏洞、配置错误、第三方故障或运营失误。
 
-LastSignal 不能替代遗嘱、信托、授权委托书或任何其他法律文书。它不具备法律效力，也不应被用来转移权利、财产或义务。如需法律确定性，请咨询合格律师并使用适当的法律文件。
+失联告警 · LastSignal 不能替代遗嘱、信托、授权委托书或任何其他法律文书。它不具备法律效力，也不应被用来转移权利、财产或义务。如需法律确定性，请咨询合格律师并使用适当的法律文件。
 
 ## 🧡 捐赠
 
-如果你觉得 **LastSignal** 有帮助并希望支持其开发，可以通过比特币捐赠：
+如果你觉得 **失联告警 · LastSignal** 有帮助并希望支持其开发，可以通过比特币捐赠：
 
 `bc1qt6z0e5ttcjx0cnwjdl8mua2srt0lamah5lnnvm`
 
